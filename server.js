@@ -16,6 +16,11 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
+// ✅ Root route for testing
+app.get('/', (req, res) => {
+  res.send('🚀 Backend is live and working!');
+});
+
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -67,6 +72,7 @@ io.on('connection', (socket) => {
   console.log('⚡ Client connected:', socket.id);
 });
 
+// Start server
 server.listen(5000, () => {
   console.log('🚀 Backend running on port 5000');
 });
